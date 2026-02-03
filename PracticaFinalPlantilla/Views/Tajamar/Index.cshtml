@@ -1,0 +1,27 @@
+﻿@model List<UsuarioTajamar>
+
+<h1 style="color:blueviolet">Lista de Usuarios</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (UsuarioTajamar u in Model)
+        {
+            <tr>
+                <td>@u.Nombre @u.Apellidos</td>
+                <td>@u.Email</td>
+                <td>
+                    <a asp-controller="Tajamar" asp-action="DetailsUsuarioTajamar"
+                       asp-route-idusuario="@u.IdUsuario"
+                       class="btn btn-success">Ver detalles</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>    
