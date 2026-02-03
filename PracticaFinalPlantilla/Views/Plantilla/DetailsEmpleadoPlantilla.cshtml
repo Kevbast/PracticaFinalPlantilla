@@ -1,0 +1,35 @@
+﻿@model Plantilla
+
+<h1 style="color:blueviolet">EMPLEADO PLANTILLA</h1>
+<a asp-controller="Plantilla" asp-action="Index" class="btn btn-dark">Volver a la tabla </a>
+@if(Model != null)
+{
+    <table class="table" border="1">
+    <thead class="thead-dark">
+        <tr>
+            <th>HOSPITAL_COD</th>
+            <th>SALA_COD</th>
+            <th>EMP_NO</th>
+            <th>APELLIDO</th>
+            <th>FUNCION</th>
+            <th>TURNO</th>
+            <th>SALARIO</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+            <td>@Model.HospitalCod</td>
+            <td>@Model.SalaCod</td>
+            <td>@Model.EmpleadoNo</td>
+            <td>@Model.Apellido</td>
+            <td>@Model.Funcion</td>
+            <td>@Model.Turno</td>
+            <td>@Model.Salario</td
+            </tr>
+    </tbody>
+</table>
+}
+else
+{
+    <h2>No se encontraron datos </h2>
+}

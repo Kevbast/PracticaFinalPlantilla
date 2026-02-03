@@ -1,0 +1,64 @@
+﻿@model ResumenPlantilla
+@{
+    List<string> funcionesList = (List<string>)ViewData["FUNCIONES"];//hacemos casting al viewData siempre
+}
+<h1>Datos Empleados PLANTILLA por FUNCION</h1>
+
+<label>Lambda Linq Empleados</label>
+
+<form method="post">
+    <label>FUNCIONES: </label>
+    @* <input type="text" name="oficio" class="form-control" /> *@
+    @* //modificamos la vista para el select y el get oficios del viewdata *@
+    <select name="funcion" class="form-control">
+        @foreach (string funcion in funcionesList)
+        {
+            <option>@funcion</option>
+        }
+    </select>
+    <p></p>
+    <button class="btn btn-info">Buscar empleados de la PLANTILLA</button>
+</form>
+@if (Model != null)
+{
+    <ul class="list-group">
+        <li class="list-group-item">Personas: @Model.Personas</li>
+        <li class="list-group-item">Maximo salario: @Model.MaximoSalario</li>
+        <li class="list-group-item">Media Salarial: @Model.MediaSalarial</li>
+    </ul>
+    <h1>Tabla de los empleados</h1>
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th>HOSPITAL_COD</th>
+                <th>EMP_NO</th>
+                <th>APELLIDO</th>
+                <th>FUNCION</th>
+            </tr>
+        </thead>
+        <tbody class="table-primary">
+            @if (Model.Empleadosp != null)//ahora que controlamos lo que devuelve en el repo,también lo controlamos aquí
+            {
+                @foreach (Plantilla emp in Model.Empleadosp)
+                {
+                    <tr>
+                        <td>@emp.HospitalCod</td>
+                        <td>@emp.EmpleadoNo</td>
+                        <td>@emp.Apellido</td>
+                        <td>@emp.Funcion</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td><h2 style="color:red">No hay empleados</h2></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2>NO SE ENCUENTRAN LOS EMPLEADOS</h2>
+}

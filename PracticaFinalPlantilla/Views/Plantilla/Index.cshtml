@@ -1,0 +1,39 @@
+﻿@model List<Plantilla>
+
+<h1 style="color:blueviolet">LISTA DE TODOS LOS ENFERMOS</h1>
+
+<a  asp-controller ="Plantilla"   asp-action="CreateEmpleadoPlantilla" class="btn btn-dark">
+    Crear un nuevo empleado para la plantilla</a>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>HOSPITAL_COD</th>
+            <th>EMP_NO</th>
+            <th>APELLIDO</th>
+            <th>FUNCION</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (Plantilla p in Model)
+        {
+            <tr>
+                <td>@p.HospitalCod</td>
+                <td>@p.EmpleadoNo</td>
+                <td>@p.Apellido</td>
+                <td>@p.Funcion</td>
+                <td>
+                    @* otra forma para el link *@
+                    <a  asp-controller="Plantilla"   asp-action="DetailsEmpleadoPlantilla"    asp-route-empno="@p.EmpleadoNo" class="btn btn-success">
+                        Ver detalles</a>
+                    <a  asp-controller="Plantilla"   asp-action="EditEmpleadoPlantilla"    asp-route-empno="@p.EmpleadoNo" class="btn btn-info">
+                            Actualizar</a>
+                            @Html.ActionLink("Delete_EmpPlantilla", "DeleteEmpPlantilla", "Plantilla", new { empno = p.EmpleadoNo}, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
